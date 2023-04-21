@@ -1,0 +1,122 @@
+<h3 class="mt-3" style="text-align: center"><b>RUTINAS</b></h3>
+<div class="container g-0">
+  <div>
+    <img
+      src="./assets/images/gimnasio6.jpg"
+      alt="maquinas"
+      style="display: block; margin: 0 auto"
+      class="img-fluid w-100 max-width-75"
+    />
+  </div>
+</div>
+<div
+  class="container p-4 mt-3 my-4 rounded shadow-sm"
+  style="background-color: white"
+  id="containerRutinas"
+>
+  <div class="container p-4 mt-3">
+    <div class="table-responsive">
+      <h3 style="text-align: center"><b>Tabla de ejercicios</b></h3>
+      <table
+        class="table table-bordered text-center my-4"
+        style="border: 1px solid black"
+        id="tablaRutinas"
+      >
+        <thead style="background-color: #24262b; color: white">
+          <tr>
+            <th>Ejercicio</th>
+            <th>Series</th>
+            <th>Repeticiones</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Press Banca</td>
+            <td>4</td>
+            <td>12x4</td>
+            <td>
+              <button type="button" class="btn btn-warning">
+                Modificar Ejercicio
+              </button>
+              <button type="button" class="btn btn-danger">
+                Borrar Ejercicio
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Press militar</td>
+            <td>4</td>
+            <td>12x4</td>
+            <td>
+              <button type="button" class="btn btn-warning">
+                Modificar ejercicio
+              </button>
+              <button type="button" class="btn btn-danger">
+                Borrar ejercicio
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center">
+    <button
+      type="button"
+      class="btn btn-primary mt-3 my-2"
+      id="crearRutinaBtn"
+      data-toggle="modal"
+      data-target="#modalNuevoEjercicio"
+    >
+      Agregar ejercicios a rutina
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="modalNuevoEjercicio"
+  tabindex="-1"
+  aria-labelledby="modalNuevoEjercicioLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNuevoEjercicioLabel">
+          Agregar ejercicio a la rutina
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="ejercicioInput" class="form-label">Ejercicio</label>
+          <input type="text" class="form-control" id="ejercicioInput" />
+        </div>
+        <div class="mb-3">
+          <label for="seriesInput" class="form-label">Series</label>
+          <input type="number" class="form-control" id="seriesInput" />
+        </div>
+        <div class="mb-3">
+          <label for="repeticionesInput" class="form-label">Repeticiones</label>
+          <input type="text" class="form-control" id="repeticionesInput" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" id="agregarBtn">
+          Agregar ejercicio
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

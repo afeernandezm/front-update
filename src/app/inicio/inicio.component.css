@@ -1,0 +1,228 @@
+#titulo {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+body {
+  color: black;
+  background: linear-gradient(#ECE9E6 -50%, #ECE9E6 150%);
+  text-align: justify;
+  font-family: sans-serif;
+}
+
+.titulos {
+  text-align: center;
+}
+
+#texto {
+  text-align: center;
+}
+
+#texto button {
+  background-color: rgba(14, 14, 14, 0.748);
+}
+
+#texto button:hover {
+  background-color: #07CFC6;
+}
+
+.contenedor {
+  color: rgb(255, 255, 255);
+}
+
+#slogan {
+  font-size: 40px;
+  font-style: oblique;
+  font-family: sans-serif;
+}
+
+#textoImagen {
+  position: absolute;
+  margin: 0;
+  padding: 30px;
+  border-radius: 30px;
+  background-color: rgba(14, 14, 14, 0.748);
+  bottom: 37%;
+}
+
+#menu a {
+  width: 100%;
+  color: white;
+  padding: 10px;
+  transition: all 0.2s ease-in;
+}
+
+#btn-is {
+  display: flex;
+}
+
+#card-formulario {
+  max-width: 500px;
+  /* ajusta el valor según tu preferencia */
+  margin: 0 auto;
+}
+
+#botonTarjeta {
+  background-color: rgba(14, 14, 14, 0.748);
+  margin: 0 auto;
+}
+
+#botonTarjeta:hover {
+  background-color: #07CFC6;
+}
+
+#tituloCitas {
+  text-align: center;
+}
+
+#funcionalidades {
+  display: flex;
+  justify-content: center;
+}
+
+#containerFuncionalidades {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+#containerRutinas {
+  border-radius: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.imagenTarjeta {
+  width: 90px;
+  height: 80px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+#funcionalidades .card:hover {
+  transition: all 0.2s ease-in;
+  transform: scale(1.1);
+  background-color: #d9d8da;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  /* Remove this if you don't want the 3D effect */
+}
+
+
+/* This container is needed to position the front and back side */
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.d-flex {
+  display: flex !important;
+  justify-content: center;
+}
+
+
+/* Position the front and back side */
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+}
+
+
+/* Style the front side (fallback if image is missing) */
+
+.flip-card-front {
+  background-color: white;
+  color: black;
+}
+
+
+/* Style the back side */
+
+.flip-card-back {
+  background-color: #d9d8da;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+}
+
+#comentarios input,
+textarea {
+  border-radius: 20px;
+  width: 35%;
+  margin-left: 30px;
+}
+
+
+
+#comentarios textarea {
+  height: 80px;
+}
+
+#comentarios label {
+  margin-left: 30px;
+}
+
+#tituloComentarios {
+  text-align: center;
+}
+
+.form-control:focus {
+  border-color: #3F51B5;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: #3F51B5;
+  border-color: #3F51B5;
+}
+
+.btn-primary:hover {
+  background-color: #303F9F;
+  border-color: #303F9F;
+}
+
+.row {
+  /* --bs-gutter-x: 1.5rem; */
+  max-width: 100%;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-.5 * var(--bs-gutter-x));
+  margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
+ul {
+  list-style: none;
+}

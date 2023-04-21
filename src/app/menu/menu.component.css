@@ -1,0 +1,21 @@
+#logo {
+  width: 70px;
+  height: 70px;
+}
+
+#menu a {
+  width: 100%;
+  color: white;
+  padding: 10px;
+  transition: all 0.2s ease-in;
+}
+
+#menu li :hover {
+  background-color: #07CFC6;
+  transition: all 0.2s ease-in;
+  transform: scale(1.2);
+}
+
+#iconoHamburguesa {
+  width: 30px;
+}

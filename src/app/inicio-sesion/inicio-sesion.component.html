@@ -1,0 +1,120 @@
+<div id="titulo">
+  <h2>INICIAR SESIÓN</h2>
+</div>
+
+<br />
+<div id="botonInicioSesion">
+  <button
+    type="submit"
+    class="btn btn-primary btn-block mx-3"
+    name="iniciarSesion"
+    id="botonIS"
+    (click)="cambiarFormularioInCliente()"
+  >
+    Cliente
+  </button>
+  <button
+    type="submit"
+    class="btn btn-primary btn-block mx-3"
+    value="Responsable"
+    href="#"
+    id="administrador"
+    (click)="cambiarFormularioIn()"
+  >
+    Responsable
+  </button>
+</div>
+<div *ngIf="formularioInVisible">
+  <div class="card shadow p-3 mb-5 bg-white rounded" id="card-formulario">
+    <div class="card-body">
+      <form onsubmit="cambiarTextoMenu()">
+        <h2 style="text-align: center">Cliente</h2>
+        <div id="formulario">
+          <div class="form-outline mb-4">
+            <label class="form-label" for="email">Correo electrónico*</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              name="email"
+              required
+              autocomplete
+            />
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="contraseña">Contraseña*</label>
+            <input
+              type="password"
+              id="contraseña"
+              class="form-control"
+              name="contraseña"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="col" id="olvidaste">
+          <a href="#!">¿Olvidaste la contraseña?</a>
+        </div>
+
+        <div id="botonInicioSesion">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            name="inCliente"
+            id="botonIn"
+          >
+            Iniciar sesion
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="!formularioInVisible">
+  <div class="card shadow p-3 mb-5 bg-white rounded" id="card-formulario2">
+    <div class="card-body">
+      <h2 style="text-align: center">Responsable</h2>
+      <form onsubmit="cambiarTextoMenu()">
+        <div id="formulario">
+          <div class="form-outline mb-4">
+            <label class="form-label" for="email">Correo electrónico*</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              name="emailAdmin"
+              required
+              autocomplete
+            />
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="contraseña">Contraseña*</label>
+            <input
+              type="password"
+              id="contraseña"
+              class="form-control"
+              name="contraseñaAdmin"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="col" id="olvidaste">
+          <a href="#!">¿Olvidaste la contraseña?</a>
+        </div>
+
+        <div id="botonInicioSesion">
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            name="iniciarAdmin"
+            id="botonIS"
+          >
+            Iniciar sesion
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

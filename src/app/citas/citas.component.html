@@ -1,0 +1,157 @@
+<div id="titulo" class="mt-3">
+  <h2>CITAS</h2>
+</div>
+
+<div class="container p-4 mt-3">
+  <div class="table-responsive">
+    <table
+      class="table table-bordered text-center table-responsive"
+      style="border: 1px solid black"
+      id="tablaCitas"
+    >
+      <thead style="background-color: #24262b; color: white">
+        <tr>
+          <th>GYM</th>
+          <th>Fecha de la cita</th>
+          <th>Hora elegida</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GYM El Euro</td>
+          <td>22/02/2023</td>
+          <td>17:30</td>
+          <td>
+            <button type="button" class="btn btn-warning">
+              Modificar cita
+            </button>
+            <button type="button" class="btn btn-danger">Borrar cita</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Alcides</td>
+          <td>19/02/2023</td>
+          <td>19:30</td>
+          <td>
+            <button type="button" class="btn btn-warning">
+              Modificar cita
+            </button>
+            <button type="button" class="btn btn-danger">Borrar cita</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div style="text-align: center" class="mt-3">
+  <div>
+    <img
+      src="./assets/images/calendario.png"
+      alt="cita"
+      id="imagenCita"
+      class="img-fluid"
+    />
+  </div>
+</div>
+<div style="display: flex; justify-content: center">
+  <button
+    type="button"
+    class="btn btn-primary mt-3 my-2"
+    data-bs-toggle="modal"
+    data-bs-target="#citaModal"
+  >
+    Solicitar cita
+  </button>
+</div>
+
+<div
+  class="modal fade"
+  id="citaModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="citaModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="citaModalLabel">Pedir Cita</h5>
+        <button
+          type="button"
+          class="close"
+          aria-label="Cerrar"
+          onclick="$('#citaModal').modal('hide')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="agregarCita(); return false;">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Número de teléfono:</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="telefono"
+              name="telefono"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="fecha"
+              name="fecha"
+              min="2023-02-23"
+              max="2023-12-31"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="hora">Hora:</label>
+            <select class="form-control" id="hora" name="hora" required>
+              <option value="">Selecciona una hora</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="gimnasio">Gimnasio:</label>
+            <select class="form-control" id="gimnasio" name="gimnasio" required>
+              <option value="">Selecciona un gimnasio</option>
+              <option value="Gimnasio A">Gimnasio A</option>
+              <option value="Gimnasio B">Gimnasio B</option>
+              <option value="Gimnasio C">Gimnasio C</option>
+            </select>
+          </div>
+
+          <div style="display: flex; justify-content: center">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
