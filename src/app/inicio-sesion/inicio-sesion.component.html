@@ -27,7 +27,7 @@
 <div *ngIf="formularioInVisible">
   <div class="card shadow p-3 mb-5 bg-white rounded" id="card-formulario">
     <div class="card-body">
-      <form onsubmit="cambiarTextoMenu()">
+      <form (submit)="iniciarSesion($event)" id="formCliente">
         <h2 style="text-align: center">Cliente</h2>
         <div id="formulario">
           <div class="form-outline mb-4">
@@ -36,7 +36,7 @@
               type="email"
               id="email"
               class="form-control"
-              name="email"
+              name="email_cliente"
               required
               autocomplete
             />
@@ -47,7 +47,7 @@
               type="password"
               id="contraseña"
               class="form-control"
-              name="contraseña"
+              name="contraseña_cliente"
               required
             />
           </div>

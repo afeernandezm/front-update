@@ -76,8 +76,19 @@
             </li>
           </ul>
         </li>
-
-        <li class="nav-item" id="Btn-is">
+<li class="nav-item" *ngIf="nombreUsuario">
+  <a class="nav-link active">{{nombreUsuario}}</a>
+</li>
+<li class="nav-item" *ngIf="!nombreUsuario" id="Btn-is">
+  <a class="nav-link active" (click)="irAPagina('/inicioSesion')">Iniciar sesión</a>
+</li>
+<li class="nav-item" *ngIf="!nombreUsuario" id="Btn-is">
+  <a class="nav-link active" (click)="irAPagina('/registro')">Registrarse</a>
+</li>
+<li class="nav-item" *ngIf="nombreUsuario" id="Btn-is">
+  <a class="nav-link active" (click)="cerrarSesion()">Cerrar sesión</a>
+</li>
+    <!--     <li class="nav-item" id="Btn-is">
           <a class="nav-link active" (click)="irAPagina('/inicioSesion')">
             Iniciar sesión</a
           >
@@ -86,7 +97,7 @@
           <a class="nav-link active" (click)="irAPagina('/registro')">
             Registrarse</a
           >
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

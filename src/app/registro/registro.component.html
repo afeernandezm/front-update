@@ -27,7 +27,8 @@
 <div *ngIf="formularioVisible">
   <div class="card shadow p-3 mb-5 bg-white rounded" id="card-formulario">
     <div class="card-body">
-      <form onsubmit="cambiarTextoMenu()">
+
+      <form id="formularioRegistroCliente">
         <h2 style="text-align: center">Cliente</h2>
         <div id="formulario">
           <div class="form-outline mb-4">
@@ -36,10 +37,11 @@
               type="text"
               id="nombre"
               class="form-control"
-              name="nombre"
+              name="nombre_cliente"
               autofocus
               required
               autocomplete
+              [(ngModel)]="nombre"
             />
           </div>
           <div class="form-outline mb-4">
@@ -48,9 +50,10 @@
               type="text"
               id="apellidos"
               class="form-control"
-              name="apellidos"
+              name="apellidos_cliente"
               required
               autocomplete
+              [(ngModel)]="apellidos"
             />
           </div>
           <div class="form-outline mb-4">
@@ -61,10 +64,11 @@
               type="date"
               id="fechaNacimiento"
               class="form-control"
-              name="fechaNacimiento"
+              name="fnac_cliente"
+              [(ngModel)]="fechaNacimiento"
             />
           </div>
-          <div class="form-outline mb-4">
+       <!--    <div class="form-outline mb-4">
             <label class="form-label" for="telefono">Teléfono*</label>
             <input
               type="tel"
@@ -75,16 +79,17 @@
               required
               autocomplete
             />
-          </div>
+          </div> -->
           <div class="form-outline mb-4">
             <label class="form-label" for="email">Correo electrónico*</label>
             <input
               type="email"
               id="email"
               class="form-control"
-              name="email"
+              name="email_cliente"
               required
               autocomplete
+              [(ngModel)]="email"
             />
           </div>
           <div class="form-outline mb-4">
@@ -93,8 +98,9 @@
               type="password"
               id="contraseña"
               class="form-control"
-              name="contraseña"
+              name="contraseña_cliente"
               required
+              [(ngModel)]="contrasenya"
             />
           </div>
         </div>
@@ -124,6 +130,7 @@
             class="btn btn-primary btn-block"
             name="registroCliente"
             id="botonRe"
+            (click)="registrar()"
           >
             Registrarse
           </button>
