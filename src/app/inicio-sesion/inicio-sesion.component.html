@@ -2,6 +2,7 @@
   <h2>INICIAR SESIÓN</h2>
 </div>
 
+
 <br />
 <div id="botonInicioSesion">
   <button
@@ -75,7 +76,7 @@
   <div class="card shadow p-3 mb-5 bg-white rounded" id="card-formulario2">
     <div class="card-body">
       <h2 style="text-align: center">Responsable</h2>
-      <form onsubmit="cambiarTextoMenu()">
+      <form (submit)="iniciarSesionAdmin($event)" id="formResponsable">
         <div id="formulario">
           <div class="form-outline mb-4">
             <label class="form-label" for="email">Correo electrónico*</label>
@@ -83,7 +84,7 @@
               type="email"
               id="email"
               class="form-control"
-              name="emailAdmin"
+              name="email_responsable"
               required
               autocomplete
             />
@@ -94,7 +95,7 @@
               type="password"
               id="contraseña"
               class="form-control"
-              name="contraseñaAdmin"
+              name="contraseña_responsable"
               required
             />
           </div>

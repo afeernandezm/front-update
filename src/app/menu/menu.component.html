@@ -32,7 +32,7 @@
       /></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleXxl">
-      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0"*ngIf="!esResponsable()" >
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -99,6 +99,70 @@
           >
         </li> -->
       </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0"*ngIf="esResponsable()" >
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            (click)="irAPagina('/')"
+            >Inicio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#recomendaciones">Recomendaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#comentarios">Comentarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="irAPagina('/contacto')">Contacto</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Otras acciones</a
+          >
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" (click)="irAPagina('/citas')">Ver Citas</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="irAPagina('/rutinas')"
+                >Mi GYM</a
+              >
+            </li>
+          </ul>
+        </li>
+  <li class="nav-item" *ngIf="nombreUsuario">
+  <a class="nav-link active">{{nombreUsuario}}</a>
+  </li>
+  <li class="nav-item" *ngIf="!nombreUsuario" id="Btn-is">
+  <a class="nav-link active" (click)="irAPagina('/inicioSesion')">Iniciar sesión</a>
+  </li>
+  <li class="nav-item" *ngIf="!nombreUsuario" id="Btn-is">
+  <a class="nav-link active" (click)="irAPagina('/registro')">Registrarse</a>
+  </li>
+  <li class="nav-item" *ngIf="nombreUsuario" id="Btn-is">
+  <a class="nav-link active" (click)="cerrarSesion()">Cerrar sesión</a>
+  </li>
+    <!--     <li class="nav-item" id="Btn-is">
+          <a class="nav-link active" (click)="irAPagina('/inicioSesion')">
+            Iniciar sesión</a
+          >
+        </li>
+        <li class="nav-item" id="Btn-is">
+          <a class="nav-link active" (click)="irAPagina('/registro')">
+            Registrarse</a
+          >
+        </li> -->
+      </ul>
     </div>
   </div>
+
 </nav>

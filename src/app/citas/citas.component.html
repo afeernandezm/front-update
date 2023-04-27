@@ -141,9 +141,9 @@
             <label for="gimnasio">Gimnasio:</label>
             <select class="form-control" id="gimnasio" name="gimnasio" required>
               <option value="">Selecciona un gimnasio</option>
-              <option value="Gimnasio A">Gimnasio A</option>
-              <option value="Gimnasio B">Gimnasio B</option>
-              <option value="Gimnasio C">Gimnasio C</option>
+              <option   *ngFor="let gimnasio of gimnasios">{{ gimnasio }}</option>
+           <!--    <option value="Gimnasio B">Gimnasio B</option>
+              <option value="Gimnasio C">Gimnasio C</option> -->
             </select>
           </div>
 

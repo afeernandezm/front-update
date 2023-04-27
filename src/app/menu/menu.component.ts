@@ -20,9 +20,9 @@ export class MenuComponent implements OnInit {
       console.log("No hay usuarios registrados");
     }
 
-    const clienteNombre = JSON.parse(localStorage.getItem('nombre_cliente') || '{}');
-    if (clienteNombre && clienteNombre.nombre_cliente) {
-      this.nombreUsuario = clienteNombre.nombre_cliente;
+    const admin = JSON.parse(localStorage.getItem('responsable') || '{}');
+    if (admin && admin.nombre_responsable) {
+      this.nombreUsuario = admin.nombre_responsable;
       console.log(this.nombreUsuario)
     } else {
       console.log("No hay usuarios registrados");
@@ -32,9 +32,12 @@ export class MenuComponent implements OnInit {
   irAPagina(ruta: string) {
     this.router.navigate([ruta]);
   }
-
+  esResponsable(): boolean {
+    return localStorage.getItem('responsable') !== null;
+  }
   cerrarSesion(): void {
     localStorage.removeItem('cliente');
+    localStorage.removeItem('responsable');
     this.nombreUsuario = null;
     this.router.navigateByUrl('/inicioSesion');
   }
