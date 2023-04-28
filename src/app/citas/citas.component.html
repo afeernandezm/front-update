@@ -18,18 +18,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>GYM El Euro</td>
-          <td>22/02/2023</td>
-          <td>17:30</td>
+        <tr *ngFor="let cita of citas" [ngClass]="{'past-date': isPastDate(cita.to_char)}">
+          <td>{{ cita.nombre_gym }}</td>
+          <td>{{ cita.to_char }}</td>
+          <td>{{ cita.hora_cita }}</td>
           <td>
-            <button type="button" class="btn btn-warning">
+            <button type="button" class="btn btn-warning" *ngIf="!isPastDate(cita.to_char)" data-bs-toggle="modal" data-bs-target="#editar-cita-modal">
               Modificar cita
             </button>
+            <p *ngIf="isPastDate(cita.to_char)">CITA PASADA</p>
             <button type="button" class="btn btn-danger">Borrar cita</button>
           </td>
         </tr>
-        <tr>
+      <!--   <tr>
           <td>Alcides</td>
           <td>19/02/2023</td>
           <td>19:30</td>
@@ -39,7 +40,7 @@
             </button>
             <button type="button" class="btn btn-danger">Borrar cita</button>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
@@ -87,15 +88,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form onsubmit="agregarCita(); return false;">
+        <form>
           <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input
               type="text"
               class="form-control"
               id="nombre"
-              name="nombre"
+              name="nombre_cliente"
               required
+              [(ngModel)]="nombre_cliente"
             />
           </div>
           <div class="form-group">
@@ -104,8 +106,9 @@
               type="tel"
               class="form-control"
               id="telefono"
-              name="telefono"
+              name="telefono_cliente"
               required
+
             />
           </div>
           <div class="form-group">
@@ -114,15 +117,16 @@
               type="date"
               class="form-control"
               id="fecha"
-              name="fecha"
+              name="fecha_cita"
               min="2023-02-23"
               max="2023-12-31"
               required
+              [(ngModel)]="fecha_cita"
             />
           </div>
           <div class="form-group">
             <label for="hora">Hora:</label>
-            <select class="form-control" id="hora" name="hora" required>
+            <select class="form-control" id="hora" name="hora_cita" [(ngModel)]="hora_cita" required>
               <option value="">Selecciona una hora</option>
               <option value="10:00">10:00</option>
               <option value="11:00">11:00</option>
@@ -139,7 +143,7 @@
           </div>
           <div class="form-group">
             <label for="gimnasio">Gimnasio:</label>
-            <select class="form-control" id="gimnasio" name="gimnasio" required>
+            <select class="form-control" id="gimnasio" name="nombre_gym" [(ngModel)]="nombre_gym" required>
               <option value="">Selecciona un gimnasio</option>
               <option   *ngFor="let gimnasio of gimnasios">{{ gimnasio }}</option>
            <!--    <option value="Gimnasio B">Gimnasio B</option>
@@ -148,9 +152,61 @@
           </div>
 
           <div style="display: flex; justify-content: center">
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary" (click)="registrarCita()">Enviar</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="editar-cita-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modificar cita</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="fecha"
+              name="fecha_cita"
+              min="2023-02-23"
+              max="2023-12-31"
+              required
+              [(ngModel)]="fecha_cita"
+            />
+          </div>
+          <div class="form-group">
+            <label for="hora">Hora:</label>
+            <select class="form-control" id="hora" name="hora_cita" [(ngModel)]="hora_cita" required>
+              <option value="">Selecciona una hora</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editarCita()">Guardar cambios</button>
       </div>
     </div>
   </div>
