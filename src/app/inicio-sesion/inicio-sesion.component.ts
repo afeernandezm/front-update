@@ -42,7 +42,7 @@ export class InicioSesionComponent implements OnInit {
     };
 
 
-    this.http.post('http://localhost:3000/iniciar-sesion', data).subscribe(
+    this.http.post('http://localhost:3000/portalGym/iniciar-sesion', data).subscribe(
       (response) => {
         console.log(response);
         const alertSuccess = document.createElement('div');
@@ -80,7 +80,7 @@ form.insertBefore(alertSuccess, form.firstChild);
      };
 
 
-     this.http.post('http://localhost:3000/iniciar-sesion-admin', data).subscribe(
+     this.http.post('http://localhost:3000/portalGym/iniciar-sesion-admin', data).subscribe(
        (response) => {
          console.log(response);
          const alertSuccess = document.createElement('div');

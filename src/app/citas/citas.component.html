@@ -23,11 +23,11 @@
           <td>{{ cita.to_char }}</td>
           <td>{{ cita.hora_cita }}</td>
           <td>
-            <button type="button" class="btn btn-warning" *ngIf="!isPastDate(cita.to_char)" data-bs-toggle="modal" data-bs-target="#editar-cita-modal">
+            <button type="button" class="btn btn-warning" *ngIf="!isPastDate(cita.to_char)" data-bs-toggle="modal" data-bs-target="#editar-cita-modal" (click)="seleccionarCita(cita.id_cita)">
               Modificar cita
             </button>
             <p *ngIf="isPastDate(cita.to_char)">CITA PASADA</p>
-            <button type="button" class="btn btn-danger">Borrar cita</button>
+            <button type="button" class="btn btn-danger" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">Borrar cita</button>
           </td>
         </tr>
       <!--   <tr>
@@ -160,13 +160,13 @@
   </div>
 </div>
 
-
+<!-- Modal modificar cita -->
 <div class="modal" id="editar-cita-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Modificar cita</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -205,8 +205,24 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" (click)="editarCita()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal eliminar cita -->
+<div class="modal fade" id="eliminarCitaModal" tabindex="-1" aria-labelledby="eliminarCitaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarCitaModalLabel">¿Está seguro de que desea eliminar esta cita?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="borrarCita()">Eliminar</button>
       </div>
     </div>
   </div>

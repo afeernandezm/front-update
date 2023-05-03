@@ -31,29 +31,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Press Banca</td>
-            <td>4</td>
-            <td>12x4</td>
+          <tr *ngFor="let ejercicio of ejercicios">
+            <td>{{ejercicio.nombre_ejercicio}}</td>
+            <td>{{ejercicio.series}}</td>
+            <td>{{ejercicio.repeticiones}}</td>
             <td>
               <button type="button" class="btn btn-warning">
                 Modificar Ejercicio
               </button>
               <button type="button" class="btn btn-danger">
                 Borrar Ejercicio
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Press militar</td>
-            <td>4</td>
-            <td>12x4</td>
-            <td>
-              <button type="button" class="btn btn-warning">
-                Modificar ejercicio
-              </button>
-              <button type="button" class="btn btn-danger">
-                Borrar ejercicio
               </button>
             </td>
           </tr>
@@ -67,8 +54,8 @@
       type="button"
       class="btn btn-primary mt-3 my-2"
       id="crearRutinaBtn"
-      data-toggle="modal"
-      data-target="#modalNuevoEjercicio"
+      data-bs-toggle="modal"
+      data-bs-target="#modalNuevoEjercicio"
     >
       Agregar ejercicios a rutina
     </button>
@@ -98,22 +85,22 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="ejercicioInput" class="form-label">Ejercicio</label>
-          <input type="text" class="form-control" id="ejercicioInput" />
+          <input type="text" class="form-control" id="ejercicioInput" name="nombre_ejercicio" [(ngModel)]="nombre_ejercicio"/>
         </div>
         <div class="mb-3">
           <label for="seriesInput" class="form-label">Series</label>
-          <input type="number" class="form-control" id="seriesInput" />
+          <input type="number" class="form-control" id="seriesInput" name="series" [(ngModel)]="series" />
         </div>
         <div class="mb-3">
           <label for="repeticionesInput" class="form-label">Repeticiones</label>
-          <input type="text" class="form-control" id="repeticionesInput" />
+          <input type="text" class="form-control" id="repeticionesInput" name="repeticiones" [(ngModel)]="repeticiones" />
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancelar
         </button>
-        <button type="button" class="btn btn-primary" id="agregarBtn">
+        <button type="button" class="btn btn-primary" id="agregarBtn" (click)="insertarEjercicio()">
           Agregar ejercicio
         </button>
       </div>

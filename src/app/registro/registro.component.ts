@@ -45,7 +45,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registrar(): void {
-    const url = 'http://localhost:3000/cliente';
+    const url = 'http://localhost:3000/portalGym/cliente';
     const data = {
       nombre_cliente: this.nombre,
       apellidos_cliente: this.apellidos,
@@ -77,7 +77,7 @@ formulario.insertBefore(alertSuccess, formulario.firstChild);
 
 
   registrarResponsable(): void {
-    const url = 'http://localhost:3000/admin';
+    const url = 'http://localhost:3000/portalGym/admin';
     const data = {
       nombre_responsable: this.nombreResponsable,
       apellidos_responsable: this.apellidosResponsable,
