@@ -1,31 +1,32 @@
 <h1 style="text-align: center;" class="mt-4">Gimnasios disponibles</h1>
 <div class="row row-cols row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
-<div *ngFor="let gimnasio of gimnasios">
+  <div *ngFor="let gimnasio of gimnasios">
 
 
-<div class="d-flex flex-wrap my-4">
-  <div class="flip-card mx-4 mt-2 mb-5">
-    <div class="flip-card-inner">
-      <div class="flip-card-front" style="background-image: url('../assets/images/low-poly-grid-haikei.svg'); color: white;">
-        <div class="mt-5" style="margin: auto;">
-        <h3 class="card-title">{{gimnasio.nombre_gym}}</h3>
-        <br>
-        <p class="card-text">Dirección: {{gimnasio.direccion_gym}}</p>
-        <p class="card-text">Teléfono: {{gimnasio.telefono}}</p>
-        <p class="card-text">Email: {{gimnasio.email_gym}}</p>
-      </div>
-      </div>
-      <div class="flip-card-back" style="background-image: url('../assets/images/blob-scene-haikei.svg'); color: white;">
-        <div class="mt-5" style="margin: auto;">
-        <h3>{{gimnasio.nombre_responsable}} {{gimnasio.apellidos_responsable}}</h3>
-        <br>
-        <br>
-    <p>Email: {{gimnasio.email_responsable}}</p>
-    <p>Telefono: {{gimnasio.telefono_responsable}}</p>
+    <div class="d-flex flex-wrap my-4">
+      <div class="flip-card mx-4 mt-2 mb-5">
+        <div class="flip-card-inner">
+          <div class="flip-card-front"
+            style="background-image: url('../assets/images/low-poly-grid-haikei.svg'); color: white;">
+            <div class="mt-5" style="margin: auto;">
+              <h3 class="card-title">{{gimnasio.nombre_gym}}</h3>
+              <br>
+              <p class="card-text">Dirección: {{gimnasio.direccion_gym}}</p>
+              <p class="card-text">Teléfono: {{gimnasio.telefono}}</p>
+              <p class="card-text">Email: {{gimnasio.email_gym}}</p>
+            </div>
+          </div>
+          <div class="flip-card-back"
+            style="background-image: url('../assets/images/blob-scene-haikei.svg'); color: white;">
+            <div class="mt-5" style="margin: auto;">
+              <h3>{{gimnasio.nombre_responsable}} {{gimnasio.apellidos_responsable}}</h3>
+              <br>
+              <br>
+              <p>Email: {{gimnasio.email_responsable}}</p>
+              <p>Telefono: {{gimnasio.telefono_responsable}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-

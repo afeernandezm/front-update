@@ -73,7 +73,10 @@ export class CitasComponent implements OnInit {
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Cita creada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-      location.reload();
+        this.servicioService.getCitas()
+      ?.subscribe((response: any[]) => {
+        this.citas = response;
+      });
       },
       (error) => {
         console.error(error);
@@ -100,7 +103,10 @@ export class CitasComponent implements OnInit {
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Cita actualizada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-        location.reload();
+        this.servicioService.getCitas()
+        ?.subscribe((response: any[]) => {
+          this.citas = response;
+        });
       },
       (error) => {
         console.error(error);
@@ -121,7 +127,10 @@ export class CitasComponent implements OnInit {
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Cita eliminada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-        location.reload();
+        this.servicioService.getCitas()
+        ?.subscribe((response: any[]) => {
+          this.citas = response;
+        });
       },
       (error) => {
         console.error(error);

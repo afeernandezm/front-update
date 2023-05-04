@@ -51,7 +51,10 @@ export class RutinasComponent implements OnInit {
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Ejercicio creado con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-      location.reload();
+        this.servicioService.getEjercicios()
+    ?.subscribe((response: any[]) => {
+      this.ejercicios = response;
+    });
       },
       (error) => {
         console.error(error);
@@ -81,7 +84,10 @@ export class RutinasComponent implements OnInit {
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Ejercicio actualizado con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-        location.reload();
+        this.servicioService.getEjercicios()
+        ?.subscribe((response: any[]) => {
+          this.ejercicios = response;
+        });
       },
       (error) => {
         console.error(error);
@@ -103,7 +109,10 @@ export class RutinasComponent implements OnInit {
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Cita eliminada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-        location.reload();
+        this.servicioService.getEjercicios()
+        ?.subscribe((response: any[]) => {
+          this.ejercicios = response;
+        });
       },
       (error) => {
         console.error(error);
