@@ -62,7 +62,6 @@ export class CitasComponent implements OnInit {
       fecha_cita: this.fecha_cita,
       hora_cita: this.hora_cita,
       nombre_gym: this.nombre_gym,
-      /* telefono_cliente: this.telefono_cliente, */
     };
     console.log(data);
     this.http.post(url, data).subscribe(

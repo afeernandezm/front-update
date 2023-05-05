@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div class="container" *ngIf="comprobarGimnasio()">
+    <div class="row justify-content-center card-container">
+      <div class="card col-sm-12 col-md-8 offset-md-3 col-lg-6 offset-lg-5" *ngFor="let gimnasio of gimnasios">
+        <img src="../assets/images/logo2-recortado.png" class="card-img-top" alt="Gimnasio imagen">
+        <h1 class="card-title">{{gimnasio.nombre_gym}}</h1>
+        <p class="card-text"><b>Dirección:</b> {{gimnasio.direccion_gym}}</p>
+        <p class="card-text"><b>Teléfono:</b> {{gimnasio.telefono}}</p>
+        <p class="card-text"><b>Email:</b> {{gimnasio.email_gym}}</p>
+        <a href="#" class="btn btn-primary">Reservar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="!comprobarGimnasio()">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h1>No tienes un gimnasio registrado</h1>
+        <h3>Registra un gimnasio</h3>
+        <div id="imagen" style=" display: flex;  align-items: center; justify-content: center;">
+        <img src="../assets/images/flecha.png" class="card-img-top" alt="Gimnasio imagen" style="width: 400px;">
+      </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Insertar gimnasio</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="miModalLabel">Insertar gimnasio</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para insertar gimnasio -->
+        <form>
+          <div class="form-group">
+            <label for="nombre_gym">Nombre</label>
+            <input type="text" class="form-control" id="nombre_gym" placeholder="Nombre del gimnasio" name="nombre_gym"[(ngModel)]="nombre_gym">
+          </div>
+          <div class="form-group">
+            <label for="email_gym">Correo electrónico</label>
+            <input type="email" class="form-control" id="email_gym" placeholder="Correo electrónico del gimnasio" name="email_gym"[(ngModel)]="email_gym">
+          </div>
+          <div class="form-group">
+            <label for="direccion_gym">Dirección</label>
+            <input type="text" class="form-control" id="direccion_gym" placeholder="Dirección del gimnasio" name="direccion_gym"[(ngModel)]="direccion_gym">
+          </div>
+          <div class="form-group">
+            <label for="telefono_gym">Teléfono</label>
+            <input type="text" class="form-control" id="telefono_gym" placeholder="Teléfono del gimnasio" name="telefono"[(ngModel)]="telefono">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="registrarGym()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

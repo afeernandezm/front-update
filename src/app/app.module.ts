@@ -13,6 +13,8 @@ import { CitasComponent } from './citas/citas.component';
 import { RutinasComponent } from './rutinas/rutinas.component';
 import { RegistroComponent } from './registro/registro.component';
 import { FormsModule } from '@angular/forms';
+import { ControlCitasComponent } from './control-citas/control-citas.component';
+import { MiGymComponent } from './mi-gym/mi-gym.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     CitasComponent,
     RutinasComponent,
     RegistroComponent,
+    ControlCitasComponent,
+    MiGymComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
   providers: [],

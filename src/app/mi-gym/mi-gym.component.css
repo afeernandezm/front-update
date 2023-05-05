@@ -1,0 +1,64 @@
+/* Estilos para la tarjeta */
+.card {
+  margin: auto;
+  margin-top: 40px;
+  max-width: 800px;
+  background-color: #f8f9fa;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.card-text {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+}
+
+.card-img {
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.card-container {
+  margin-bottom: 30px;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    margin-top: 50px;
+    padding: 25px;
+    width: 80%;
+    padding: 30px;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .card-text {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .card-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .card-container {
+    text-align: center;
+    padding: 0 15px;
+  }
+}
+

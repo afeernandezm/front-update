@@ -1,0 +1,52 @@
+<div id="titulo" class="mt-3">
+  <h2>CONTROL DE CITAS </h2>
+</div>
+
+<div class="container p-4 mt-3">
+  <div class="table-responsive">
+    <table
+      class="table table-bordered text-center table-responsive"
+      style="border: 1px solid black"
+      id="tablaCitas"
+    >
+      <thead style="background-color: #24262b; color: white">
+        <tr>
+          <th>Cliente</th>
+          <th>Fecha de la cita</th>
+          <th>Hora elegida</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citas" [ngClass]="{'past-date': isPastDate(cita.to_char)}">
+          <td>{{ cita.nombre_cliente }}</td>
+          <td>{{ cita.to_char }}</td>
+          <td>{{ cita.hora_cita }}</td>
+          <td>
+            <p *ngIf="isPastDate(cita.to_char)">CITA PASADA</p>
+            <button type="button" class="btn btn-danger" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">Cancelar cita</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+<!-- Modal eliminar cita -->
+<div class="modal fade" id="eliminarCitaModal" tabindex="-1" aria-labelledby="eliminarCitaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarCitaModalLabel">¿Está seguro de que desea eliminar esta cita?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="borrarCita()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

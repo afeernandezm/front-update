@@ -1,3 +1,5 @@
+import { ControlCitasComponent } from './control-citas/control-citas.component';
+import { MiGymComponent } from './mi-gym/mi-gym.component';
 import { RegistroComponent } from './registro/registro.component';
 import { RutinasComponent } from './rutinas/rutinas.component';
 import { CitasComponent } from './citas/citas.component';
@@ -36,6 +38,14 @@ const routes: Routes = [
   {
     path: 'registro',
     component: RegistroComponent,
+  },
+  {
+    path: 'mi-gym',
+    component: MiGymComponent,
+  },
+  {
+    path: 'registroCitas',
+    component: ControlCitasComponent,
   },
 ];
 

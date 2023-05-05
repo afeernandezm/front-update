@@ -12,15 +12,15 @@ export class RegistroComponent implements OnInit {
   nombre: string;
   apellidos: string;
   fechaNacimiento: Date;
-/*   telefono: string; */
+  /*   telefono: string; */
   email: string;
   contrasenya: string;
 
-  nombreResponsable:string;
-  apellidosResponsable:string;
-  telefonoResponsable:string;
+  nombreResponsable: string;
+  apellidosResponsable: string;
+  telefonoResponsable: string;
   emailResponsable: string;
-  contrasenyaResponsable:string;
+  contrasenyaResponsable: string;
 
   constructor(private http: HttpClient) {
     this.nombre = '';
@@ -29,14 +29,14 @@ export class RegistroComponent implements OnInit {
     /* this.telefono = ''; */
     this.email = '';
     this.contrasenya = '';
-    this.nombreResponsable='';
-    this.apellidosResponsable='';
-    this.telefonoResponsable='';
-    this.emailResponsable='';
-    this.contrasenyaResponsable='';
+    this.nombreResponsable = '';
+    this.apellidosResponsable = '';
+    this.telefonoResponsable = '';
+    this.emailResponsable = '';
+    this.contrasenyaResponsable = '';
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   cambiarFormulario(): void {
     this.formularioVisible = !this.formularioVisible;
   }
@@ -61,12 +61,12 @@ export class RegistroComponent implements OnInit {
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Registro o inicio de sesión con éxito");
-formulario.insertBefore(alertSuccess, formulario.firstChild);
-      formulario.reset();
+        formulario.insertBefore(alertSuccess, formulario.firstChild);
+        formulario.reset();
 
-      localStorage.setItem('cliente', JSON.stringify(data));
-      location.reload();
-      location.href = '/';
+        localStorage.setItem('cliente', JSON.stringify(response));
+        location.reload();
+        location.href = '/';
       },
       (error) => {
         console.error(error);
@@ -93,16 +93,21 @@ formulario.insertBefore(alertSuccess, formulario.firstChild);
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Registro o inicio de sesión con éxito");
-formulario.insertBefore(alertSuccess, formulario.firstChild);
-      formulario.reset();
+        formulario.insertBefore(alertSuccess, formulario.firstChild);
+        formulario.reset();
 
-      localStorage.setItem('responsable', JSON.stringify(data));
-      location.reload();
-      location.href = '/';
+        localStorage.setItem('responsable', JSON.stringify(response));
+
+        location.reload();
+        location.href = '/';
       },
       (error) => {
         console.error(error);
-
+        const formulario = document.getElementById('formularioResponsable') as HTMLFormElement;
+        const alertError = document.createElement('div');
+        alertError.classList.add('alert', 'alert-danger');
+        alertError.textContent = ("Registro o inicio de sesión fallido");
+        formulario.insertBefore(alertError, formulario.firstChild);
       }
     );
   }
