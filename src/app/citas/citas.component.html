@@ -2,7 +2,7 @@
   <h2>CITAS</h2>
 </div>
 
-<div class="container p-4 mt-3">
+<div class="container p-5 mt-3 my-4 rounded shadow-sm" style="background-color: white">
   <div class="table-responsive">
     <table
       class="table table-bordered text-center table-responsive"
@@ -26,8 +26,12 @@
             <button type="button" class="btn btn-warning" *ngIf="!isPastDate(cita.to_char)" data-bs-toggle="modal" data-bs-target="#editar-cita-modal" (click)="seleccionarCita(cita.id_cita)">
               Modificar cita
             </button>
-            <p *ngIf="isPastDate(cita.to_char)">CITA PASADA</p>
-            <button type="button" class="btn btn-danger" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">Borrar cita</button>
+
+            <button *ngIf="isPastDate(cita.to_char)"class="btn btn-secondary" disabled>CITA PASADA</button>
+
+            <button mat-fab color="warn" aria-label="Borrar" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">
+          <mat-icon>delete</mat-icon>
+        </button>
           </td>
         </tr>
       <!--   <tr>

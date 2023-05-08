@@ -15,7 +15,9 @@ import { RegistroComponent } from './registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { ControlCitasComponent } from './control-citas/control-citas.component';
 import { MiGymComponent } from './mi-gym/mi-gym.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { MiGymComponent } from './mi-gym/mi-gym.component';
     ControlCitasComponent,
     MiGymComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule, BrowserAnimationsModule,MatButtonModule,MatIconModule],
   providers: [],
   bootstrap: [AppComponent],
 })

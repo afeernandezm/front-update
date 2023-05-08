@@ -1,3 +1,4 @@
+import { AuthGuard } from './AuthGuard';
 import { ControlCitasComponent } from './control-citas/control-citas.component';
 import { MiGymComponent } from './mi-gym/mi-gym.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -30,10 +31,12 @@ const routes: Routes = [
   {
     path: 'citas',
     component: CitasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rutinas',
     component: RutinasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'registro',

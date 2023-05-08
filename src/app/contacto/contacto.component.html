@@ -37,7 +37,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="p-4 shadow-sm bg-white">
-            <form method="post" action="#" id="contact-form">
+            <form method="post" action="#" id="contact-form" (submit)="submitForm($event)">
               <div class="mb-3">
                 <label for="name" class="form-label">Nombre:</label>
                 <input
@@ -72,10 +72,9 @@
                   required
                 ></textarea>
               </div>
-
-              <button type="submit" class="btn btn-primary">
-                Enviar mensaje
-              </button>
+              <div style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+              </div>
             </form>
           </div>
         </div>
