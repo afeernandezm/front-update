@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,15 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GimnasiosComponent implements OnInit {
   gimnasios: any[] = [];
+
+
   ngOnInit() {
-    fetch('http://localhost:3000/portalGym/get-gimnasios')
+    fetch(this.rutasService.URL.gimnasios+'get-gimnasios')
     .then(response => response.json())
     .then(data => {
       this.gimnasios = data;
     })
     .catch(error => console.error(error));
   }
-  constructor() { }
+  constructor(private rutasService: RutasService) { }
 
 
 }

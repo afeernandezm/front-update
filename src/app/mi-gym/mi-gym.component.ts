@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -22,7 +23,7 @@ export class MiGymComponent implements OnInit{
 this.getMiGym()
   }
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient,private rutasService: RutasService){}
   comprobarGimnasio(): boolean {
     return this.gimnasios.length > 0;
   }
@@ -33,7 +34,7 @@ this.getMiGym()
     if (responsable) {
       const id_responsable = responsable.id_responsable.toString();
       console.log('ID del responsable:', id_responsable);
-      this.http.get<any[]>(`http://localhost:3000/portalGym/info-gimnasio/${id_responsable}`)
+      this.http.get<any[]>(this.rutasService.URL.gimnasios+'info-gimnasio/'+id_responsable)
         .subscribe(
           (response) => {
             console.log(response);
@@ -50,7 +51,7 @@ this.getMiGym()
 
 
   registrarGym(): void {
-    const url = 'http://localhost:3000/portalGym/insertar-gimnasio';
+    const url = this.rutasService.URL.gimnasios+'insertar-gimnasio';
 console.log(this.id_responsable)
     const data = {
       nombre_gym: this.nombre_gym,

@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { PdfService } from './../services/pdf.service';
 import { HttpClient } from '@angular/common/http';
 import { ServiceService } from './../services/service.service';
@@ -26,7 +27,7 @@ export class RutinasComponent implements OnInit {
     });
   }
 
-  constructor(private http: HttpClient, private servicioService: ServiceService, private pdf: PdfService){}
+  constructor(private http: HttpClient, private servicioService: ServiceService, private pdf: PdfService,private rutasService: RutasService){}
 
   seleccionarEjercicio(id_ejercicio: number) {
     this.idEjercicioSeleccionado = id_ejercicio;
@@ -34,7 +35,7 @@ export class RutinasComponent implements OnInit {
   }
 
   insertarEjercicio(): void {
-    const url = 'http://localhost:3000/portalGym/ejercicios';
+    const url = this.rutasService.URL.ejercicios;
     const data = {
       nombre_ejercicio: this.nombre_ejercicio,
       series: this.series,
@@ -66,7 +67,7 @@ export class RutinasComponent implements OnInit {
 
 
   editarEjercicio(): void {
-    const url = `http://localhost:3000/portalGym/ejercicios/${this.idEjercicioSeleccionado}`;
+    const url = this.rutasService.URL.ejercicios+this.idEjercicioSeleccionado;
 
     const data = {
       nombre_ejercicio: this.nombre_ejercicio,
@@ -98,7 +99,7 @@ export class RutinasComponent implements OnInit {
 
 
   borrarEjercicio(): void {
-    const url = `http://localhost:3000/portalGym/borrar-ejercicios/${this.idEjercicioSeleccionado}`;
+    const url = this.rutasService.URL.ejercicios+'borrar-ejercicios/'+this.idEjercicioSeleccionado;
 
     this.http.delete(url).subscribe(
       (response) => {

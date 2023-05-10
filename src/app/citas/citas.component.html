@@ -27,24 +27,13 @@
               Modificar cita
             </button>
 
-            <button *ngIf="isPastDate(cita.to_char)"class="btn btn-secondary" disabled>CITA PASADA</button>
+            <button *ngIf="isPastDate(cita.to_char.toString())"class="btn btn-secondary" disabled>CITA PASADA</button>
 
             <button mat-fab color="warn" aria-label="Borrar" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">
           <mat-icon>delete</mat-icon>
         </button>
           </td>
         </tr>
-      <!--   <tr>
-          <td>Alcides</td>
-          <td>19/02/2023</td>
-          <td>19:30</td>
-          <td>
-            <button type="button" class="btn btn-warning">
-              Modificar cita
-            </button>
-            <button type="button" class="btn btn-danger">Borrar cita</button>
-          </td>
-        </tr> -->
       </tbody>
     </table>
   </div>
@@ -112,6 +101,8 @@
               id="telefono"
               name="telefono_cliente"
               required
+              pattern="[0-9]{10}"
+              title="El número de teléfono debe tener 10 dígitos"
 
             />
           </div>
@@ -210,7 +201,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="editarCita()">Guardar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="editarCita()" >Guardar cambios</button>
       </div>
     </div>
   </div>

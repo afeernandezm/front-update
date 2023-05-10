@@ -1,3 +1,4 @@
+import { RutasService } from './rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,10 +7,10 @@ import { Injectable } from '@angular/core';
 })
 export class ServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private rutasService: RutasService) { }
 
   getGimnasios() {
-    return this.http.get<any[]>('http://localhost:3000/portalGym/gimnasios');
+    return this.http.get<any[]>(this.rutasService.URL.gimnasios);
   }
 
   getCitas() {
@@ -19,7 +20,7 @@ export class ServiceService {
     if (cliente) {
       const id_cliente = cliente.id_cliente.toString();
       console.log('ID del cliente:', id_cliente);
-      return this.http.get<any[]>(`http://localhost:3000/portalGym/get-citas/${id_cliente}`);
+      return this.http.get<any[]>(this.rutasService.URL.citas+'get-citas/'+id_cliente);
     } else {
       console.log('No se encontró el objeto cliente en el almacenamiento local');
       return null; // o devuelve un Observable vacío, dependiendo de lo que necesites en tu aplicación
@@ -36,7 +37,7 @@ getEjercicios() {
   if (cliente) {
     const id_cliente = cliente.id_cliente.toString();
     console.log('ID del cliente:', id_cliente);
-    return this.http.get<any[]>(`http://localhost:3000/portalGym/get-ejercicios/${id_cliente}`);
+    return this.http.get<any[]>(this.rutasService.URL.ejercicios+'get-ejercicios/'+id_cliente);
   } else {
     console.log('No se encontró el objeto cliente en el almacenamiento local');
     return null;
@@ -49,4 +50,4 @@ getEjercicios() {
 
 
 
-}
+  }

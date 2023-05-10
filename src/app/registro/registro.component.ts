@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,7 +23,7 @@ export class RegistroComponent implements OnInit {
   emailResponsable: string;
   contrasenyaResponsable: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private rutasService: RutasService) {
     this.nombre = '';
     this.apellidos = '';
     this.fechaNacimiento = new Date();
@@ -45,7 +46,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registrar(): void {
-    const url = 'http://localhost:3000/portalGym/cliente';
+    const url = this.rutasService.URL.usuarios+'cliente';
     const data = {
       nombre_cliente: this.nombre,
       apellidos_cliente: this.apellidos,
@@ -77,7 +78,7 @@ export class RegistroComponent implements OnInit {
 
 
   registrarResponsable(): void {
-    const url = 'http://localhost:3000/portalGym/admin';
+    const url = this.rutasService.URL.usuarios+'admin';
     const data = {
       nombre_responsable: this.nombreResponsable,
       apellidos_responsable: this.apellidosResponsable,

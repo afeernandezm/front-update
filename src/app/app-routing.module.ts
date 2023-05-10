@@ -1,3 +1,6 @@
+import { PoliticaPrivacidadComponent } from './politica-privacidad/politica-privacidad.component';
+import { NuestrosServiciosComponent } from './nuestros-servicios/nuestros-servicios.component';
+import { ConocenosComponent } from './conocenos/conocenos.component';
 import { AuthGuard } from './AuthGuard';
 import { ControlCitasComponent } from './control-citas/control-citas.component';
 import { MiGymComponent } from './mi-gym/mi-gym.component';
@@ -49,6 +52,18 @@ const routes: Routes = [
   {
     path: 'registroCitas',
     component: ControlCitasComponent,
+  },
+  {
+    path: 'conocenos',
+    component:ConocenosComponent
+  },
+  {
+    path: 'nuestros-servicios',
+    component:NuestrosServiciosComponent
+  },
+  {
+    path: 'politica-privacidad',
+    component:PoliticaPrivacidadComponent
   },
 ];
 

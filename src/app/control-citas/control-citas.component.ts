@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +14,7 @@ export class ControlCitasComponent implements OnInit {
 
   ngOnInit() {this.getCitas() }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private rutasService: RutasService) { }
   seleccionarCita(id_cita: number) {
     this.idCitaSeleccionada = id_cita;
     console.log(id_cita)
@@ -36,7 +37,7 @@ export class ControlCitasComponent implements OnInit {
     if (responsable) {
       const id_responsable = responsable.id_responsable.toString();
       console.log('ID del responsable:', id_responsable);
-      this.http.get<any[]>(`http://localhost:3000/portalGym/citas-responsable/${id_responsable}`)
+      this.http.get<any[]>(this.rutasService.URL.citas+'citas-responsable/'+id_responsable)
         .subscribe(
           (response) => {
             console.log(response);
@@ -53,7 +54,7 @@ export class ControlCitasComponent implements OnInit {
 
 
   borrarCita(): void {
-    const url = `http://localhost:3000/portalGym//responsable-borrar-cita/${this.idCitaSeleccionada}`;
+    const url = this.rutasService.URL.citas+'responsable-borrar-cita/'+this.idCitaSeleccionada;
 
     this.http.delete(url).subscribe(
       (response) => {

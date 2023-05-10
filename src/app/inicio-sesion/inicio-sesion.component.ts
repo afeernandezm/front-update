@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,7 +15,7 @@ export class InicioSesionComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private rutasService: RutasService) {}
 
   ngOnInit() {
 
@@ -42,7 +43,7 @@ export class InicioSesionComponent implements OnInit {
     };
 
 
-    this.http.post('http://localhost:3000/portalGym/iniciar-sesion', data).subscribe(
+    this.http.post(this.rutasService.URL.usuarios+'iniciar-sesion', data).subscribe(
       (response) => {
         console.log(response);
         const alertSuccess = document.createElement('div');
@@ -51,7 +52,7 @@ export class InicioSesionComponent implements OnInit {
 form.insertBefore(alertSuccess, form.firstChild);
         // Redirigir al usuario a la página de inicio
         setTimeout(() => {
-          window.location.href = 'http://localhost:4200';
+          window.location.href = this.rutasService.location;
         }, 2000);
 
         localStorage.setItem("cliente",JSON.stringify(response))
@@ -80,7 +81,7 @@ form.insertBefore(alertSuccess, form.firstChild);
      };
 
 
-     this.http.post('http://localhost:3000/portalGym/iniciar-sesion-admin', data).subscribe(
+     this.http.post(this.rutasService.URL.usuarios+'iniciar-sesion-admin', data).subscribe(
        (response) => {
          console.log(response);
          const alertSuccess = document.createElement('div');
@@ -89,7 +90,7 @@ form.insertBefore(alertSuccess, form.firstChild);
  form.insertBefore(alertSuccess, form.firstChild);
          // Redirigir al usuario a la página de inicio
          setTimeout(() => {
-           window.location.href = 'http://localhost:4200';
+           window.location.href = this.rutasService.location;
          }, 2000);
 
          localStorage.setItem("responsable",JSON.stringify(response))

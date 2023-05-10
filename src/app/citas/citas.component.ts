@@ -1,3 +1,4 @@
+import { RutasService } from './../services/rutas.service';
 import { ServiceService } from './../services/service.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -20,7 +21,7 @@ export class CitasComponent implements OnInit {
   nombre_gym:string="";
   /* telefono_cliente:string=""; */
   mostrarModal = false;
-  constructor(private http: HttpClient, private servicioService: ServiceService) {
+  constructor(private http: HttpClient, private servicioService: ServiceService,private rutasService: RutasService) {
   }
 
   ngOnInit(): void {
@@ -44,19 +45,25 @@ export class CitasComponent implements OnInit {
     this.idCitaSeleccionada = id_cita;
     console.log(id_cita)
   }
-
+  parseDate(dateString: string): Date {
+    const parts = dateString.split('-');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
   isPastDate(dateString: string): boolean {
     const today = new Date();
     const rowDate = new Date(dateString);
+    today.setHours(0, 0, 0, 0);
+    rowDate.setHours(0, 0, 0, 0);
 
-    return rowDate.getFullYear() < today.getFullYear() ||
-           rowDate.getMonth() < today.getMonth() ||
-           rowDate.getDate() < today.getDate();
+    return rowDate < today;
   }
 
 
   registrarCita(): void {
-    const url = 'http://localhost:3000/portalGym/citas';
+    const url = this.rutasService.URL.citas;
     const data = {
       nombre_cliente: this.nombre_cliente,
       fecha_cita: this.fecha_cita,
@@ -86,7 +93,8 @@ export class CitasComponent implements OnInit {
 
 
   editarCita(): void {
-    const url = `http://localhost:3000/portalGym/citas/${this.idCitaSeleccionada}`;
+
+    const url = this.rutasService.URL.citas+this.idCitaSeleccionada;
 
     const data = {
       fecha_cita: this.fecha_cita,
@@ -115,7 +123,7 @@ export class CitasComponent implements OnInit {
 
 
   borrarCita(): void {
-    const url = `http://localhost:3000/portalGym/borrar-citas/${this.idCitaSeleccionada}`;
+    const url =this.rutasService.URL.citas+'borrar-citas/'+this.idCitaSeleccionada;
 
     this.http.delete(url).subscribe(
       (response) => {
