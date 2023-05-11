@@ -1,6 +1,7 @@
 import { RutasService } from './../services/rutas.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environtment';
 
 @Component({
   selector: 'app-registro',
@@ -46,7 +47,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registrar(): void {
-    const url = this.rutasService.URL.usuarios+'cliente';
+    const url = environment.URL.usuarios+'cliente';
     const data = {
       nombre_cliente: this.nombre,
       apellidos_cliente: this.apellidos,
@@ -78,7 +79,7 @@ export class RegistroComponent implements OnInit {
 
 
   registrarResponsable(): void {
-    const url = this.rutasService.URL.usuarios+'admin';
+    const url = environment.URL.usuarios+'admin';
     const data = {
       nombre_responsable: this.nombreResponsable,
       apellidos_responsable: this.apellidosResponsable,

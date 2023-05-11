@@ -5,6 +5,7 @@ import { ServiceService } from './../services/service.service';
 import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable, { ThemeType } from 'jspdf-autotable';
+import { environment } from 'src/environments/environtment';
 
 @Component({
   selector: 'app-rutinas',
@@ -35,7 +36,7 @@ export class RutinasComponent implements OnInit {
   }
 
   insertarEjercicio(): void {
-    const url = this.rutasService.URL.ejercicios;
+    const url = environment.URL.ejercicios;
     const data = {
       nombre_ejercicio: this.nombre_ejercicio,
       series: this.series,
@@ -67,7 +68,7 @@ export class RutinasComponent implements OnInit {
 
 
   editarEjercicio(): void {
-    const url = this.rutasService.URL.ejercicios+this.idEjercicioSeleccionado;
+    const url =environment.URL.ejercicios+this.idEjercicioSeleccionado;
 
     const data = {
       nombre_ejercicio: this.nombre_ejercicio,
@@ -99,7 +100,7 @@ export class RutinasComponent implements OnInit {
 
 
   borrarEjercicio(): void {
-    const url = this.rutasService.URL.ejercicios+'borrar-ejercicios/'+this.idEjercicioSeleccionado;
+    const url = environment.URL.ejercicios+'borrar-ejercicios/'+this.idEjercicioSeleccionado;
 
     this.http.delete(url).subscribe(
       (response) => {

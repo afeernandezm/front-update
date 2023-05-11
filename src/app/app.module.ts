@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ConocenosComponent } from './conocenos/conocenos.component';
 import { NuestrosServiciosComponent } from './nuestros-servicios/nuestros-servicios.component';
 import { PoliticaPrivacidadComponent } from './politica-privacidad/politica-privacidad.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,7 @@ import { PoliticaPrivacidadComponent } from './politica-privacidad/politica-priv
     NuestrosServiciosComponent,
     PoliticaPrivacidadComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule, BrowserAnimationsModule,MatButtonModule,MatIconModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule, BrowserAnimationsModule,MatButtonModule,MatIconModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

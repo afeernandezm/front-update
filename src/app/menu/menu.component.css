@@ -9,7 +9,9 @@
   padding: 10px;
   transition: all 0.2s ease-in;
 }
-
+nav{
+  font-size: 18px;
+}
 #menu li :hover {
   background-color: #07CFC6;
   transition: all 0.2s ease-in;

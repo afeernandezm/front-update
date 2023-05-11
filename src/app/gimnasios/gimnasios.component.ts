@@ -1,6 +1,6 @@
 import { RutasService } from './../services/rutas.service';
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from "../../environments/environtment";
 @Component({
   selector: 'app-gimnasios',
   templateUrl: './gimnasios.component.html',
@@ -11,7 +11,7 @@ export class GimnasiosComponent implements OnInit {
 
 
   ngOnInit() {
-    fetch(this.rutasService.URL.gimnasios+'get-gimnasios')
+    fetch(environment.URL.gimnasios+'get-gimnasios')
     .then(response => response.json())
     .then(data => {
       this.gimnasios = data;

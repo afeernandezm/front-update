@@ -1,7 +1,7 @@
 import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from "../../environments/environtment";
 @Component({
   selector: 'app-control-citas',
   templateUrl: './control-citas.component.html',
@@ -20,13 +20,20 @@ export class ControlCitasComponent implements OnInit {
     console.log(id_cita)
   }
 
+  parseDate(dateString: string): Date {
+    const parts = dateString.split('-');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
   isPastDate(dateString: string): boolean {
     const today = new Date();
     const rowDate = new Date(dateString);
+    today.setHours(0, 0, 0, 0);
+    rowDate.setHours(0, 0, 0, 0);
 
-    return rowDate.getFullYear() < today.getFullYear() ||
-      rowDate.getMonth() < today.getMonth() ||
-      rowDate.getDate() < today.getDate();
+    return rowDate < today;
   }
 
 
@@ -37,7 +44,7 @@ export class ControlCitasComponent implements OnInit {
     if (responsable) {
       const id_responsable = responsable.id_responsable.toString();
       console.log('ID del responsable:', id_responsable);
-      this.http.get<any[]>(this.rutasService.URL.citas+'citas-responsable/'+id_responsable)
+      this.http.get<any[]>(environment.URL.citas+'citas-responsable/'+id_responsable)
         .subscribe(
           (response) => {
             console.log(response);
@@ -54,7 +61,7 @@ export class ControlCitasComponent implements OnInit {
 
 
   borrarCita(): void {
-    const url = this.rutasService.URL.citas+'responsable-borrar-cita/'+this.idCitaSeleccionada;
+    const url = environment.URL.citas+'responsable-borrar-cita/'+this.idCitaSeleccionada;
 
     this.http.delete(url).subscribe(
       (response) => {

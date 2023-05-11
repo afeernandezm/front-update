@@ -1,7 +1,7 @@
 import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from "../../environments/environtment";
 @Component({
   selector: 'app-inicio-sesion',
   templateUrl: './inicio-sesion.component.html',
@@ -43,7 +43,7 @@ export class InicioSesionComponent implements OnInit {
     };
 
 
-    this.http.post(this.rutasService.URL.usuarios+'iniciar-sesion', data).subscribe(
+    this.http.post(environment.URL.usuarios+'iniciar-sesion', data).subscribe(
       (response) => {
         console.log(response);
         const alertSuccess = document.createElement('div');
@@ -81,7 +81,7 @@ form.insertBefore(alertSuccess, form.firstChild);
      };
 
 
-     this.http.post(this.rutasService.URL.usuarios+'iniciar-sesion-admin', data).subscribe(
+     this.http.post(environment.URL.usuarios+'iniciar-sesion-admin', data).subscribe(
        (response) => {
          console.log(response);
          const alertSuccess = document.createElement('div');

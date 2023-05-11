@@ -3,7 +3,7 @@ import { ServiceService } from './../services/service.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { format } from 'date-fns';
-
+import { environment } from "../../environments/environtment";
 
 @Component({
   selector: 'app-citas',
@@ -63,7 +63,7 @@ export class CitasComponent implements OnInit {
 
 
   registrarCita(): void {
-    const url = this.rutasService.URL.citas;
+    const url = environment.URL.citas;
     const data = {
       nombre_cliente: this.nombre_cliente,
       fecha_cita: this.fecha_cita,
@@ -94,7 +94,7 @@ export class CitasComponent implements OnInit {
 
   editarCita(): void {
 
-    const url = this.rutasService.URL.citas+this.idCitaSeleccionada;
+    const url = environment.URL.citas+this.idCitaSeleccionada;
 
     const data = {
       fecha_cita: this.fecha_cita,
@@ -123,7 +123,7 @@ export class CitasComponent implements OnInit {
 
 
   borrarCita(): void {
-    const url =this.rutasService.URL.citas+'borrar-citas/'+this.idCitaSeleccionada;
+    const url =environment.URL.citas+'borrar-citas/'+this.idCitaSeleccionada;
 
     this.http.delete(url).subscribe(
       (response) => {

@@ -4,6 +4,8 @@
   padding: 0;
 
   box-sizing: border-box;
+
+
 }
 
 #titulo {
@@ -26,6 +28,7 @@ body {
   background: linear-gradient(#ECE9E6 -50%, #ECE9E6 150%);
   text-align: justify;
   font-family: sans-serif;
+
 }
 
 .titulos {
@@ -68,6 +71,7 @@ body {
   color: white;
   padding: 10px;
   transition: all 0.2s ease-in;
+
 }
 
 #btn-is {

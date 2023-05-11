@@ -51,7 +51,10 @@
           </div>
           <div class="form-group">
             <label for="direccion_gym">Dirección</label>
-            <input type="text" class="form-control" id="direccion_gym" placeholder="Dirección del gimnasio" name="direccion_gym"[(ngModel)]="direccion_gym">
+            <input type="text" class="form-control" id="direccion_gym" [formControl]="addressControl" (input)="onAddressInput()" placeholder="Dirección del gimnasio" name="direccion_gym" [(ngModel)]="direccion_gym">
+            <ul>
+              <li *ngFor="let suggestion of addressSuggestions">{{ suggestion }}</li>
+            </ul>
           </div>
           <div class="form-group">
             <label for="telefono_gym">Teléfono</label>

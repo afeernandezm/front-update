@@ -1,4 +1,7 @@
 /* Estilos para la tarjeta */
+*{
+  font-size: 18px;
+}
 .card {
   margin: auto;
   margin-top: 40px;

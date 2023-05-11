@@ -1,14 +1,17 @@
 import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from 'src/environments/environtment';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-mi-gym',
   templateUrl: './mi-gym.component.html',
   styleUrls: ['./mi-gym.component.css']
 })
 export class MiGymComponent implements OnInit{
-
+  addressControl = new FormControl();
+  addressSuggestions: string[] = [];
   gimnasios: any[] = [];
 
   nombre_gym:string="";
@@ -34,7 +37,7 @@ this.getMiGym()
     if (responsable) {
       const id_responsable = responsable.id_responsable.toString();
       console.log('ID del responsable:', id_responsable);
-      this.http.get<any[]>(this.rutasService.URL.gimnasios+'info-gimnasio/'+id_responsable)
+      this.http.get<any[]>(environment.URL.gimnasios+'info-gimnasio/'+id_responsable)
         .subscribe(
           (response) => {
             console.log(response);
@@ -51,7 +54,7 @@ this.getMiGym()
 
 
   registrarGym(): void {
-    const url = this.rutasService.URL.gimnasios+'insertar-gimnasio';
+    const url = environment.URL.gimnasios+'insertar-gimnasio';
 console.log(this.id_responsable)
     const data = {
       nombre_gym: this.nombre_gym,
@@ -81,5 +84,22 @@ console.log(this.id_responsable)
       }
     );
   }
+
+  onAddressInput() {
+    const address = this.addressControl.value;
+
+    this.http
+      .get<string[]>(`${environment.URL.direcciones}/geocode?address=${encodeURIComponent(address)}`)
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((suggestions) => {
+          this.addressSuggestions = suggestions;
+          return [];
+        })
+      )
+      .subscribe();
+  }
+
 
 }

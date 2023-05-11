@@ -1,3 +1,6 @@
+*{
+
+}
 #titulo {
   text-align: center;
   font-weight: bold;
@@ -9,6 +12,7 @@ body {
   background: linear-gradient(#ECE9E6 -50%, #ECE9E6 150%);
   text-align: justify;
   font-family: sans-serif;
+  font-size: 18px;
 }
 
 .titulos {
