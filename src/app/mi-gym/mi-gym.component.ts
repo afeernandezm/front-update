@@ -2,8 +2,10 @@ import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environtment';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { of } from 'rxjs';
+import axios from 'axios';
 @Component({
   selector: 'app-mi-gym',
   templateUrl: './mi-gym.component.html',
@@ -13,7 +15,7 @@ export class MiGymComponent implements OnInit{
   addressControl = new FormControl();
   addressSuggestions: string[] = [];
   gimnasios: any[] = [];
-
+  showAddressSelect: boolean = true;
   nombre_gym:string="";
   email_gym="";
   direccion_gym:string="";
@@ -76,30 +78,43 @@ console.log(this.id_responsable)
       },
       (error) => {
         console.error(error);
+
+        // Verificar si el error contiene un mensaje personalizado
+        let errorMessage = "Error al registrar";
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        }
+
+        // Mostrar el mensaje de error en el formulario
         const formulario = document.getElementById('miModal') as HTMLFormElement;
         const alertError = document.createElement('div');
         alertError.classList.add('alert', 'alert-danger');
-        alertError.textContent = ("Error al crear gimnasio");
+        alertError.textContent = errorMessage;
         formulario.insertBefore(alertError, formulario.firstChild);
       }
     );
   }
+  onAddressInput(event: any) {
+    const address = event.target.value;
 
-  onAddressInput() {
-    const address = this.addressControl.value;
-
-    this.http
-      .get<string[]>(`${environment.URL.direcciones}/geocode?address=${encodeURIComponent(address)}`)
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        switchMap((suggestions) => {
+    if (address) {
+      axios
+        .get(environment.URL.direcciones+'geocode', { params: { address } })
+        .then((response) => {
+          const suggestions = response.data.features.map((feature: any) => feature.place_name);
           this.addressSuggestions = suggestions;
-          return [];
+          console.log(this.addressSuggestions);
         })
-      )
-      .subscribe();
+        .catch((error) => {
+          console.error('Error en la solicitud de geocodificación:', error);
+          this.addressSuggestions = [];
+        });
+    }
   }
 
-
+  onAddressSelect(event: any) {
+    const selectedAddress = event.target.value;
+    this.direccion_gym = selectedAddress;
+    this.showAddressSelect = false;
+  }
 }

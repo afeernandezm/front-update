@@ -1,7 +1,11 @@
 *{
   font-size: 18px;
 }
-
+.custom-h3 {
+  font-weight: bold;
+  text-align: center;
+  font-size: 24px;
+}
 .past-date {
   background-color: #a0a0a0;
 }

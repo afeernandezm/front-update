@@ -6,6 +6,7 @@ import autoTable, { ThemeType } from 'jspdf-autotable';
   providedIn: 'root'
 })
 export class PdfService {
+  nombre_cliente: any;
 
   constructor() { }
   public generarPDF(): void {
@@ -67,10 +68,13 @@ export class PdfService {
         }
       },
     };
-
+    const clienteString = localStorage.getItem('cliente');
+    const cliente = clienteString ? JSON.parse(clienteString) : null;
+    this.nombre_cliente = cliente && cliente.nombre_cliente ? cliente.nombre_cliente : '';
     const fecha = new Date().toLocaleDateString();
     const header = `TABLA DE RUTINAS \n\n`;
-    const footer = `Generado el ${fecha} en PortalGym`;
+    const footer = `Generado el ${fecha} en PortalGym por ${this.nombre_cliente}`;
+
     autoTable(doc, { html: tablaNueva, ...options });
 
     doc.text(footer, 14, doc.internal.pageSize.height - 15);

@@ -14,6 +14,8 @@ export class CitasComponent implements OnInit {
   gimnasios: any[] = [];
   citas: any[] = [];
   nombre_cliente:string="";
+
+
   fecha_cita="";
   public idCitaSeleccionada: number=0;
    /* fecha_formateada = this.fecha_cita.toLocaleDateString('es-ES'); */
@@ -34,6 +36,10 @@ export class CitasComponent implements OnInit {
       ?.subscribe((response: any[]) => {
         this.citas = response;
       });
+
+      const clienteString = localStorage.getItem('cliente');
+      const cliente = clienteString ? JSON.parse(clienteString) : null;
+      this.nombre_cliente = cliente && cliente.nombre_cliente ? cliente.nombre_cliente : '';
   }
   abrirModal() {
     this.mostrarModal = true;

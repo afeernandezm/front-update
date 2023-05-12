@@ -83,7 +83,9 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="nombre">Nombre:</label>
+            <h3 id="nombre" name="nombre_cliente" required [(ngModel)]="nombre_cliente" readonly disabled class="custom-h3">{{ nombre_cliente }}</h3>
+
+           <!--  <label for="nombre">Nombre:</label>
             <input
               type="text"
               class="form-control"
@@ -91,7 +93,9 @@
               name="nombre_cliente"
               required
               [(ngModel)]="nombre_cliente"
-            />
+              readonly
+              disabled
+            /> -->
           </div>
           <div class="form-group">
             <label for="telefono">Número de teléfono:</label>

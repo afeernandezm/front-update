@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@popperjs/core": "^2.11.7",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "canvas": "^2.11.2",
     "date-fns": "^2.29.3",

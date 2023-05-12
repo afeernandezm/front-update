@@ -73,6 +73,18 @@ export class RegistroComponent implements OnInit {
       (error) => {
         console.error(error);
 
+        // Verificar si el error contiene un mensaje personalizado
+        let errorMessage = "Error al registrar";
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        }
+
+        // Mostrar el mensaje de error en el formulario
+        const formulario = document.getElementById('formularioRegistroCliente') as HTMLFormElement;
+        const alertError = document.createElement('div');
+        alertError.classList.add('alert', 'alert-danger');
+        alertError.textContent = errorMessage;
+        formulario.insertBefore(alertError, formulario.firstChild);
       }
     );
   }
@@ -105,10 +117,18 @@ export class RegistroComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+
+        // Verificar si el error contiene un mensaje personalizado
+        let errorMessage = "Error al registrar";
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        }
+
+        // Mostrar el mensaje de error en el formulario
         const formulario = document.getElementById('formularioResponsable') as HTMLFormElement;
         const alertError = document.createElement('div');
         alertError.classList.add('alert', 'alert-danger');
-        alertError.textContent = ("Registro o inicio de sesión fallido");
+        alertError.textContent = errorMessage;
         formulario.insertBefore(alertError, formulario.firstChild);
       }
     );

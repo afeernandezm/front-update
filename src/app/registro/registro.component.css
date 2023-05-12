@@ -6,3 +6,7 @@
 *{
   font-size: 18px;
 }
+.move-left {
+  transform: translateX(-10px); /* Ajusta la cantidad de desplazamiento según tus necesidades */
+  transition: transform 0.3s ease;
+}
