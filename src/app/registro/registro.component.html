@@ -6,7 +6,7 @@
 <div id="botonInicioSesion">
   <button
     type="submit"
-    class="btn btn-primary btn-block mx-3"
+    class="btn btn-secondary btn-block mx-3"
     name="iniciarSesion"
     id="botonIS"
     (click)="cambiarFormularioCliente()"
@@ -15,7 +15,7 @@
   </button>
   <button
     type="submit"
-    class="btn btn-primary btn-block mx-3"
+    class="btn btn-secondary btn-block mx-3"
     value="Responsable"
     href="#"
     id="administrador"
@@ -104,26 +104,7 @@
             />
           </div>
         </div>
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="recordar"
-                checked
-                name="recordar"
-              />
-              <label class="form-check-label" for="recordar">
-                Recuérdame
-              </label>
-            </div>
-          </div>
-          <div class="col" id="olvidaste">
-            <a href="#!">¿Olvidaste la contraseña?</a>
-          </div>
-        </div>
+
         <div id="botonInicioSesion">
           <button
             type="submit"
@@ -205,26 +186,6 @@
               required
               [(ngModel)]="contrasenyaResponsable"
             />
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="recordar"
-                checked
-                name="recordarAdmin"
-              />
-              <label class="form-check-label" for="recordar">
-                Recuérdame
-              </label>
-            </div>
-          </div>
-          <div class="col" id="olvidaste">
-            <a href="#!">¿Olvidaste la contraseña?</a>
           </div>
         </div>
         <div id="botonInicioSesion">
