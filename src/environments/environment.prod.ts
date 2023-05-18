@@ -8,5 +8,5 @@ export const environment = {
     direcciones: "https://backend-sb-portalgym.onrender.com/portalGym/direcciones/",
     usuarios:"https://backend-sb-portalgym.onrender.com/portalGym/usuarios/"
   },
-  location:"https://backend-sb-portalgym.onrender.com"
+  location:"https://portalgym.vercel.app/"
 };
