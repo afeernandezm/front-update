@@ -7,5 +7,6 @@ export const environment = {
     gimnasios: "http://localhost:3000/portalGym/gimnasios/",
     direcciones: "http://localhost:3000/portalGym/direcciones/",
     usuarios:"http://localhost:3000/portalGym/usuarios/"
-  }
+  },
+  location:"http://localhost:4200"
 };

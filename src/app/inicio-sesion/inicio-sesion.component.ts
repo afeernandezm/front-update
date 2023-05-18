@@ -56,7 +56,7 @@ export class InicioSesionComponent implements OnInit {
         form.insertBefore(alertSuccess, form.firstChild);
         // Redirigir al usuario a la página de inicio
         setTimeout(() => {
-          window.location.href = this.rutasService.location;
+          window.location.href = environment.location;
         }, 2000);
 
         localStorage.setItem('cliente', JSON.stringify(response));
@@ -100,7 +100,7 @@ export class InicioSesionComponent implements OnInit {
         form.insertBefore(alertSuccess, form.firstChild);
         // Redirigir al usuario a la página de inicio
         setTimeout(() => {
-          window.location.href = this.rutasService.location;
+          window.location.href = environment.location;
         }, 2000);
 
         localStorage.setItem('responsable', JSON.stringify(response));
