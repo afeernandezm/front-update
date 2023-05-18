@@ -3,7 +3,7 @@ import { ServiceService } from './../services/service.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { format } from 'date-fns';
-import { environment } from "../../environments/environtment";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: 'app-citas',

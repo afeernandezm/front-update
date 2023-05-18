@@ -1,7 +1,7 @@
 import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from "../../environments/environtment";
+import { environment } from "../../environments/environment";
 @Component({
   selector: 'app-control-citas',
   templateUrl: './control-citas.component.html',

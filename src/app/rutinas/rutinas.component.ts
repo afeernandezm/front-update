@@ -5,7 +5,7 @@ import { ServiceService } from './../services/service.service';
 import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable, { ThemeType } from 'jspdf-autotable';
-import { environment } from 'src/environments/environtment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-rutinas',

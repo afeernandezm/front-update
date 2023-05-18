@@ -1,7 +1,7 @@
 import { RutasService } from './../services/rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environtment';
+import { environment } from 'src/environments/environment';
 import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { of } from 'rxjs';

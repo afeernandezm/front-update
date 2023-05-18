@@ -1,7 +1,7 @@
 import { RutasService } from './rutas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environtment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
