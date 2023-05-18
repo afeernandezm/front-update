@@ -18,16 +18,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cita of citas" [ngClass]="{'past-date': isPastDate(cita.to_char)}">
-          <td>{{ cita.nombre_gym }}</td>
-          <td>{{ cita.to_char }}</td>
+        <tr *ngFor="let cita of citas" [ngClass]="{'past-date': isPastDate(cita.fecha_cita)}">
+          <td>{{ cita.gimnasio }}</td>
+          <td>{{ cita.fecha_cita }}</td>
           <td>{{ cita.hora_cita }}</td>
           <td>
-            <button type="button" class="btn btn-warning" *ngIf="!isPastDate(cita.to_char)" data-bs-toggle="modal" data-bs-target="#editar-cita-modal" (click)="seleccionarCita(cita.id_cita)">
+            <button type="button" class="btn btn-warning" *ngIf="!isPastDate(cita.fecha_cita)" data-bs-toggle="modal" data-bs-target="#editar-cita-modal" (click)="seleccionarCita(cita.id_cita)">
               Modificar cita
             </button>
 
-            <button *ngIf="isPastDate(cita.to_char.toString())"class="btn btn-secondary" disabled>CITA PASADA</button>
+            <button *ngIf="isPastDate(cita.fecha_cita)"class="btn btn-secondary" disabled>CITA PASADA</button>
 
             <button mat-fab color="warn" aria-label="Borrar" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">
           <mat-icon>delete</mat-icon>
@@ -83,7 +83,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <h3 id="nombre" name="nombre_cliente" required [(ngModel)]="nombre_cliente" readonly disabled class="custom-h3">{{ nombre_cliente }}</h3>
+            <h3 id="nombre" name="nombre_cliente"  readonly disabled class="custom-h3">{{ nombre_cliente }}</h3>
 
            <!--  <label for="nombre">Nombre:</label>
             <input

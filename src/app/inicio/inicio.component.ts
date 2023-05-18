@@ -14,4 +14,7 @@ export class InicioComponent {
   irAPagina(ruta: string) {
     this.router.navigate([ruta]);
   }
+  esResponsable(): boolean {
+    return localStorage.getItem('responsable') !== null;
+  }
 }

@@ -23,12 +23,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cita of citas" [ngClass]="{'past-date': isPastDate(cita.to_char)}">
+        <tr *ngFor="let cita of citas" [ngClass]="{'past-date': isPastDate(cita.fecha_cita)}">
           <td>{{ cita.nombre_cliente }}</td>
-          <td>{{ cita.to_char }}</td>
+          <td>{{ cita.fecha_cita }}</td>
           <td>{{ cita.hora_cita }}</td>
           <td>
-            <p *ngIf="isPastDate(cita.to_char.toString())">CITA PASADA</p>
+            <p *ngIf="isPastDate(cita.fecha_cita)">CITA PASADA</p>
             <button type="button" class="btn btn-danger" (click)="seleccionarCita(cita.id_cita)" data-bs-toggle="modal" data-bs-target="#eliminarCitaModal">Cancelar cita</button>
           </td>
         </tr>

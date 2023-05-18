@@ -15,11 +15,13 @@ export class ServiceService {
   }
 
   getCitas() {
+   /*  const clienteString = localStorage.getItem('cliente');
+    const cliente = clienteString ? JSON.parse(clienteString) : null; */
     const clienteString = localStorage.getItem('cliente');
     const cliente = clienteString ? JSON.parse(clienteString) : null;
-
+    const id_client = cliente && cliente.id_cliente ? cliente.id_cliente : '';
     if (cliente) {
-      const id_cliente = cliente.id_cliente.toString();
+      const id_cliente = id_client;
       console.log('ID del cliente:', id_cliente);
       return this.http.get<any[]>(environment.URL.citas+'get-citas/'+id_cliente);
     } else {

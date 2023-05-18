@@ -15,7 +15,7 @@ export class CitasComponent implements OnInit {
   citas: any[] = [];
   nombre_cliente:string="";
 
-
+  id_cliente:number=0;
   fecha_cita="";
   public idCitaSeleccionada: number=0;
    /* fecha_formateada = this.fecha_cita.toLocaleDateString('es-ES'); */
@@ -69,7 +69,12 @@ export class CitasComponent implements OnInit {
 
 
   registrarCita(): void {
-    const url = environment.URL.citas;
+    const clienteString = localStorage.getItem('cliente');
+    const cliente = clienteString ? JSON.parse(clienteString) : null;
+    this.id_cliente = cliente && cliente.id_cliente ? cliente.id_cliente : '';
+
+
+    const url = environment.URL.citas+this.id_cliente;
     const data = {
       nombre_cliente: this.nombre_cliente,
       fecha_cita: this.fecha_cita,

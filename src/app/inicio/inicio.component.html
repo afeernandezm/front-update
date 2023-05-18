@@ -89,7 +89,7 @@
     <h3 class="titulos"><b>FUNCIONALIDADES</b></h3>
     <hr />
     <br />
-    <div class="container" id="containerFuncionalidades">
+    <div class="container" id="containerFuncionalidades"*ngIf="!esResponsable()">
       <div id="funcionalidades" class="row row-cols row-cols-md-3">
         <div class="card col-md-5 g-4" style="border-radius: 30px">
           <img
@@ -192,6 +192,67 @@
       </div>
     </div>
 
+    <!-- RESPONSABLE -->
+
+    <div class="container" id="containerFuncionalidades"*ngIf="esResponsable()">
+      <div id="funcionalidades" class="row row-cols row-cols-md-3">
+        <div class="card col-md-5 g-4" style="border-radius: 30px">
+          <img
+            class="imagenTarjeta img-fluid"
+            src="./assets/images/calendario.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h3 class="card-title" id="tituloCitas"><b> Control de citas</b></h3>
+            <p class="card-text">
+              <b>Gestiona tus citas de ty GYM. </b> <br />
+              Accede a nuestra página y gestiona las citas de tu GYM
+            </p>
+            <div style="text-align: center">
+              <a (click)="irAPagina('/registroCitas')"
+                ><button
+                  id="botonTarjeta"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Controla las citas
+                </button></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 d-none-sm" style="width: 60px"></div>
+        <div class="card col-md-5 g-4" style="border-radius: 30px">
+          <img
+            class="imagenTarjeta img-fluid"
+            src="./assets/images/gimnasio.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h3 class="card-title" id="tituloCitas"><b> Mi GYM</b></h3>
+            <p class="card-text">
+              <b>Información del GYM. </b> <br />
+              Controla la información de tu GYM, y si aún tu GYM no está en nuestra página no dudes en registrarlo. ¡No pierdas la oportunidad!
+            </p>
+            <div style="text-align: center">
+              <a (click)="irAPagina('/rutinas')"
+                ><button
+                  id="botonTarjeta"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Mi GYM
+                </button></a
+              >
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-2 d-none-sm" style="width: 60px"></div>
+
+      </div>
+    </div>
     <br />
     <br />
     <br />
