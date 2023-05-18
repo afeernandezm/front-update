@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { format } from 'date-fns';
 import { environment } from "../../environments/environment";
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-citas',
@@ -73,8 +74,7 @@ export class CitasComponent implements OnInit {
     const cliente = clienteString ? JSON.parse(clienteString) : null;
     this.id_cliente = cliente && cliente.id_cliente ? cliente.id_cliente : '';
 
-
-    const url = environment.URL.citas+this.id_cliente;
+    const url = environment.URL.citas + this.id_cliente;
     const data = {
       nombre_cliente: this.nombre_cliente,
       fecha_cita: this.fecha_cita,
@@ -82,6 +82,10 @@ export class CitasComponent implements OnInit {
       nombre_gym: this.nombre_gym,
     };
     console.log(data);
+
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     this.http.post(url, data).subscribe(
       (response) => {
         console.log(response);
@@ -91,70 +95,87 @@ export class CitasComponent implements OnInit {
         alertSuccess.textContent = ("Cita creada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
         this.servicioService.getCitas()
-      ?.subscribe((response: any[]) => {
-        this.citas = response;
-      });
+          ?.pipe(finalize(() => {
+            spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta o en caso de error
+          }))
+          .subscribe((response: any[]) => {
+            this.citas = response;
+          });
       },
       (error) => {
         console.error(error);
-
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
 
 
   editarCita(): void {
-
-    const url = environment.URL.citas+this.idCitaSeleccionada;
+    const url = environment.URL.citas + this.idCitaSeleccionada;
 
     const data = {
       fecha_cita: this.fecha_cita,
       hora_cita: this.hora_cita
     };
     console.log(data);
+
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     this.http.put(url, data).subscribe(
       (response) => {
         console.log(response);
-
         const formulario = document.getElementById('editar-cita-modal') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Cita actualizada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
         this.servicioService.getCitas()
-        ?.subscribe((response: any[]) => {
-          this.citas = response;
-        });
+          ?.pipe(finalize(() => {
+            spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta o en caso de error
+          }))
+          .subscribe((response: any[]) => {
+            this.citas = response;
+          });
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
 
 
+
   borrarCita(): void {
-    const url =environment.URL.citas+'borrar-citas/'+this.idCitaSeleccionada;
+    const url = environment.URL.citas + 'borrar-citas/' + this.idCitaSeleccionada;
+
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
 
     this.http.delete(url).subscribe(
       (response) => {
         console.log(response);
-
         const formulario = document.getElementById('eliminarCitaModal') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Cita eliminada con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
         this.servicioService.getCitas()
-        ?.subscribe((response: any[]) => {
-          this.citas = response;
-        });
+          ?.pipe(finalize(() => {
+            spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta o en caso de error
+          }))
+          .subscribe((response: any[]) => {
+            this.citas = response;
+          });
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
+
 
 
 }

@@ -47,7 +47,10 @@ export class RegistroComponent implements OnInit {
   }
 
   registrar(): void {
-    const url = environment.URL.usuarios+'cliente';
+    const url = environment.URL.usuarios + 'cliente';
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     const data = {
       nombre_cliente: this.nombre,
       apellidos_cliente: this.apellidos,
@@ -56,13 +59,16 @@ export class RegistroComponent implements OnInit {
       contraseña_cliente: this.contrasenya,
     };
     console.log(data);
+
     this.http.post(url, data).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
+
         const formulario = document.getElementById('formularioRegistroCliente') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
-        alertSuccess.textContent = ("Registro o inicio de sesión con éxito");
+        alertSuccess.textContent = ("Registro o inicio de sesión exitoso");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
         formulario.reset();
 
@@ -72,6 +78,7 @@ export class RegistroComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
 
         // Verificar si el error contiene un mensaje personalizado
         let errorMessage = "Error al registrar";
@@ -91,7 +98,10 @@ export class RegistroComponent implements OnInit {
 
 
   registrarResponsable(): void {
-    const url = environment.URL.usuarios+'admin';
+    const url = environment.URL.usuarios + 'admin';
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     const data = {
       nombre_responsable: this.nombreResponsable,
       apellidos_responsable: this.apellidosResponsable,
@@ -100,13 +110,16 @@ export class RegistroComponent implements OnInit {
       contraseña_responsable: this.contrasenyaResponsable,
     };
     console.log(data);
+
     this.http.post(url, data).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
+
         const formulario = document.getElementById('formularioResponsable') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
-        alertSuccess.textContent = ("Registro o inicio de sesión con éxito");
+        alertSuccess.textContent = ("Registro o inicio de sesión exitoso");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
         formulario.reset();
 
@@ -117,6 +130,7 @@ export class RegistroComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
 
         // Verificar si el error contiene un mensaje personalizado
         let errorMessage = "Error al registrar";
@@ -133,5 +147,6 @@ export class RegistroComponent implements OnInit {
       }
     );
   }
+
 
 }

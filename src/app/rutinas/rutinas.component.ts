@@ -37,90 +37,111 @@ export class RutinasComponent implements OnInit {
 
   insertarEjercicio(): void {
     const url = environment.URL.ejercicios;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     const data = {
       nombre_ejercicio: this.nombre_ejercicio,
       series: this.series,
       repeticiones: this.repeticiones,
-      id_cliente:this.id_cliente
+      id_cliente: this.id_cliente
     };
     console.log(this.id_cliente);
     console.log(data);
+
     this.http.post(url, data).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
+
         const formulario = document.getElementById('modalNuevoEjercicio') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Ejercicio creado con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
+
         this.servicioService.getEjercicios()
-    ?.subscribe((response: any[]) => {
-      this.ejercicios = response;
-    });
+          ?.subscribe((response: any[]) => {
+            this.ejercicios = response;
+          });
       },
       (error) => {
         console.error(error);
-
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
 
 
 
+
   editarEjercicio(): void {
-    const url =environment.URL.ejercicios+this.idEjercicioSeleccionado;
+    const url = environment.URL.ejercicios + this.idEjercicioSeleccionado;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
 
     const data = {
       nombre_ejercicio: this.nombre_ejercicio,
       series: this.series,
       repeticiones: this.repeticiones,
-      id_cliente:this.id_cliente
+      id_cliente: this.id_cliente
     };
     console.log(data);
+
     this.http.put(url, data).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
 
         const formulario = document.getElementById('modificarEjercicioModal') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
         alertSuccess.textContent = ("Ejercicio actualizado con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
+
         this.servicioService.getEjercicios()
-        ?.subscribe((response: any[]) => {
-          this.ejercicios = response;
-        });
+          ?.subscribe((response: any[]) => {
+            this.ejercicios = response;
+          });
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
+
 
 
 
   borrarEjercicio(): void {
-    const url = environment.URL.ejercicios+'borrar-ejercicios/'+this.idEjercicioSeleccionado;
+    const url = environment.URL.ejercicios + 'borrar-ejercicios/' + this.idEjercicioSeleccionado;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
 
     this.http.delete(url).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
 
         const formulario = document.getElementById('eliminarEjercicioModal') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
-        alertSuccess.textContent = ("Cita eliminada con éxito");
+        alertSuccess.textContent = ("Ejercicio eliminado con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
+
         this.servicioService.getEjercicios()
-        ?.subscribe((response: any[]) => {
-          this.ejercicios = response;
-        });
+          ?.subscribe((response: any[]) => {
+            this.ejercicios = response;
+          });
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
+
 
 
   generarPDF() {

@@ -56,28 +56,33 @@ this.getMiGym()
 
 
   registrarGym(): void {
-    const url = environment.URL.gimnasios+'insertar-gimnasio';
-console.log(this.id_responsable)
+    const url = environment.URL.gimnasios + 'insertar-gimnasio';
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     const data = {
       nombre_gym: this.nombre_gym,
       email_gym: this.email_gym,
       direccion_gym: this.direccion_gym,
       telefono: this.telefono,
-      id_responsable:this.id_responsable
+      id_responsable: this.id_responsable
     };
-    console.log(data);
+
     this.http.post(url, data).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
+
         const formulario = document.getElementById('miModal') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
-        alertSuccess.textContent = ("Gimnasio creada con éxito");
+        alertSuccess.textContent = ("Gimnasio creado con éxito");
         formulario.insertBefore(alertSuccess, formulario.firstChild);
         this.getMiGym();
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
 
         // Verificar si el error contiene un mensaje personalizado
         let errorMessage = "Error al registrar";
@@ -94,6 +99,7 @@ console.log(this.id_responsable)
       }
     );
   }
+
   onAddressInput(event: any) {
     const address = event.target.value;
 

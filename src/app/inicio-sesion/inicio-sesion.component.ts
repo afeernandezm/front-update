@@ -32,8 +32,11 @@ export class InicioSesionComponent implements OnInit {
 
 
   iniciarSesion(event: Event): void {
-   event.preventDefault();
+    event.preventDefault();
     const form = event.target as HTMLFormElement;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
+
     const email_cliente = (form.querySelector('input[name=email_cliente]') as HTMLInputElement)?.value;
     const contraseña_cliente = (form.querySelector('input[name=contraseña_cliente]') as HTMLInputElement)?.value;
 
@@ -42,24 +45,26 @@ export class InicioSesionComponent implements OnInit {
       contraseña_cliente: contraseña_cliente,
     };
 
-
-    this.http.post(environment.URL.usuarios+'iniciar-sesion', data).subscribe(
+    this.http.post(environment.URL.usuarios + 'iniciar-sesion', data).subscribe(
       (response) => {
         console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
+
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
-        alertSuccess.textContent = ("Inicio sesión exitoso");
-form.insertBefore(alertSuccess, form.firstChild);
+        alertSuccess.textContent = 'Inicio de sesión exitoso';
+        form.insertBefore(alertSuccess, form.firstChild);
         // Redirigir al usuario a la página de inicio
         setTimeout(() => {
           window.location.href = this.rutasService.location;
         }, 2000);
 
-        localStorage.setItem("cliente",JSON.stringify(response))
+        localStorage.setItem('cliente', JSON.stringify(response));
       },
-        /* location.reload(); */
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
+
         const alertError = document.createElement('div');
         alertError.classList.add('alert', 'alert-danger');
         alertError.textContent = 'Error al iniciar sesión';
@@ -69,40 +74,50 @@ form.insertBefore(alertSuccess, form.firstChild);
   }
 
 
+
   iniciarSesionAdmin(event2: Event): void {
     event2.preventDefault();
-     const form = event2.target as HTMLFormElement;
-     const email_responsable = (form.querySelector('input[name=email_responsable]') as HTMLInputElement)?.value;
-     const contraseña_responsable = (form.querySelector('input[name=contraseña_responsable]') as HTMLInputElement)?.value;
+    const form = event2.target as HTMLFormElement;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
 
-     const data = {
+    const email_responsable = (form.querySelector('input[name=email_responsable]') as HTMLInputElement)?.value;
+    const contraseña_responsable = (form.querySelector('input[name=contraseña_responsable]') as HTMLInputElement)?.value;
+
+    const data = {
       email_responsable: email_responsable,
       contraseña_responsable: contraseña_responsable,
-     };
+    };
+
+    this.http.post(environment.URL.usuarios + 'iniciar-sesion-admin', data).subscribe(
+      (response) => {
+        console.log(response);
+        spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
+
+        const alertSuccess = document.createElement('div');
+        alertSuccess.classList.add('alert', 'alert-success');
+        alertSuccess.textContent = 'Inicio de sesión exitoso';
+        form.insertBefore(alertSuccess, form.firstChild);
+        // Redirigir al usuario a la página de inicio
+        setTimeout(() => {
+          window.location.href = this.rutasService.location;
+        }, 2000);
+
+        localStorage.setItem('responsable', JSON.stringify(response));
+      },
+      (error) => {
+        console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
+
+        const alertError = document.createElement('div');
+        alertError.classList.add('alert', 'alert-danger');
+        alertError.textContent = 'Error al iniciar sesión';
+        form.insertBefore(alertError, form.firstChild);
+      }
+    );
+  }
 
 
-     this.http.post(environment.URL.usuarios+'iniciar-sesion-admin', data).subscribe(
-       (response) => {
-         console.log(response);
-         const alertSuccess = document.createElement('div');
-         alertSuccess.classList.add('alert', 'alert-success');
-         alertSuccess.textContent = ("Inicio sesión exitoso");
- form.insertBefore(alertSuccess, form.firstChild);
-         // Redirigir al usuario a la página de inicio
-         setTimeout(() => {
-           window.location.href = this.rutasService.location;
-         }, 2000);
 
-         localStorage.setItem("responsable",JSON.stringify(response))
-       },
-         /* location.reload(); */
-       (error) => {
-         console.error(error);
-         const alertError = document.createElement('div');
-         alertError.classList.add('alert', 'alert-danger');
-         alertError.textContent = 'Error al iniciar sesión';
-         form.insertBefore(alertError, form.firstChild);
-       }
-     );
-   }
+
 }

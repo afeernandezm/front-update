@@ -37,31 +37,39 @@ export class ControlCitasComponent implements OnInit {
   }
 
 
-   getCitas() {
+  getCitas() {
     const responsableString = localStorage.getItem('responsable');
     const responsable = responsableString ? JSON.parse(responsableString) : null;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
 
     if (responsable) {
       const id_responsable = responsable.id_responsable.toString();
       console.log('ID del responsable:', id_responsable);
-      this.http.get<any[]>(environment.URL.citas+'citas-responsable/'+id_responsable)
+      this.http.get<any[]>(environment.URL.citas + 'citas-responsable/' + id_responsable)
         .subscribe(
           (response) => {
             console.log(response);
             this.citas = response;
+            spinner.style.display = 'none'; // Ocultar el spinner al recibir la respuesta
           },
           (error) => {
             console.log(error);
+            spinner.style.display = 'none'; // Ocultar el spinner en caso de error
           }
         );
     } else {
       console.log('No se encontró el objeto responsable en el almacenamiento local');
+      spinner.style.display = 'none'; // Ocultar el spinner si no se encuentra el objeto responsable
     }
   }
 
 
+
   borrarCita(): void {
-    const url = environment.URL.citas+'responsable-borrar-cita/'+this.idCitaSeleccionada;
+    const url = environment.URL.citas + 'responsable-borrar-cita/' + this.idCitaSeleccionada;
+    const spinner = document.querySelector('.spinner') as HTMLElement;
+    spinner.style.display = 'block'; // Mostrar el spinner
 
     this.http.delete(url).subscribe(
       (response) => {
@@ -70,12 +78,14 @@ export class ControlCitasComponent implements OnInit {
         const formulario = document.getElementById('eliminarCitaModal') as HTMLFormElement;
         const alertSuccess = document.createElement('div');
         alertSuccess.classList.add('alert', 'alert-success');
-        alertSuccess.textContent = ("Cita eliminada con éxito");
+        alertSuccess.textContent = "Cita eliminada con éxito";
         formulario.insertBefore(alertSuccess, formulario.firstChild);
-        this.getCitas()
+        this.getCitas();
+        spinner.style.display = 'none'; // Ocultar el spinner después de obtener la respuesta
       },
       (error) => {
         console.error(error);
+        spinner.style.display = 'none'; // Ocultar el spinner en caso de error
       }
     );
   }
